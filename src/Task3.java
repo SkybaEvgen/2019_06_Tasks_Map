@@ -3,27 +3,27 @@
 являются анаграммами слова “anna”. Дан словарь, сожержащийанаграммы, например
 {“anna”, “ivan”, “naan”, “vani”, “piotr”, “nana”, “navi”}.
 Написать функцию, которая по слову из словаря вернет все анаграммы этогослова,
-которые есть в словаре. Например, по слову “ivan” функция вернет{“navi”, “vani”}
-
-Решение без использования HashMap.
-*/
-
+которые есть в словаре. Например, по слову “ivan” функция вернет{“navi”, “vani”}*/
 import java.util.*;
 
-public class Task3_2 {
-    public static List<String> anagramWord (List<String> list, String word){
-        Map<String, List<String >> voc = new HashMap<>();
+public class Task3 {
+    private static Map<String, List<String >> voc = new HashMap<>();
+
+    public static List<String> isAnagramm (List<String> list, String word){
         List<String> listWord = new ArrayList<>();
-        /*for (int i = 0; i < list.size(); i++){
-            if(sortWord(word).equals(sortWord(list.get(i))))
-                listWord.add(list.get(i));
-        }*/
+        String wordS = sortWord(word);
         for (String s : list){
-            if(sortWord(word).equals(sortWord(s))){
-                listWord.add(s);
+            String sWord = sortWord(s);
+            if(!voc.containsKey(sWord)){
+                List<String> mlist = new ArrayList<>();
+                mlist.add(s);
+                voc.put(sWord, mlist);
+            }else {
+                List<String> strings = voc.get(sWord);
+                strings.add(s);
             }
         }
-        return listWord;
+        return voc.get(wordS);
     }
 
     public static String sortWord (String s){
@@ -32,4 +32,3 @@ public class Task3_2 {
         return new String(str);
     }
 }
-

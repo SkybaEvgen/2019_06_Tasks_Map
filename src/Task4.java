@@ -1,5 +1,8 @@
-import java.util.List;
-import java.util.Map;
+/*Дан список имен, где некоторые имена повторяются.
+Написать функцию,которая по имени вернет
+количество вхождений этого имени в список.*/
+
+import java.util.*;
 
 public class Task4 {
     public static int numberOfEntries (List<String> list, String name){
